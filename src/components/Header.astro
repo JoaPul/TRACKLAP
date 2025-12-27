@@ -1,0 +1,23 @@
+---
+import ThemeToggle from "./ui/ThemeToggle.astro";
+---
+
+<header class="border-b border-zinc-200 dark:border-zinc-800">
+  <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <a href="/" class="text-2xl font-bold text-brand"> TrackLap </a>
+
+    <nav class="flex items-center gap-4">
+      <a href="/login" class="text-sm font-medium hover:text-brand transition">
+        Login
+      </a>
+      <a
+        href="/register"
+        class="text-sm font-medium hover:text-brand transition"
+      >
+        Register
+      </a>
+
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

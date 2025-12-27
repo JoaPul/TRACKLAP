@@ -84,3 +84,5 @@ src/
   Update the Hono backend to send a Set-Cookie header.
 
   Update Astro to use Astro.cookies.get('token') in the Layouts.
+
+- change the backgroudn color of the button register and when hover change the color of the leter to the the backgroun and the background in white.(reverse in light mode).
