@@ -1,4 +1,5 @@
-import type { User } from '../types';
+// src/lib/api.ts
+import { $token, logout } from '../store/authStore';
 
 const BASE_URL = import.meta.env.PUBLIC_API_URL;
 
@@ -11,9 +12,11 @@ export async function apiRequest<T>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
     options: RequestOptions = {}
 ): Promise<T> {
-    // 1. Get the token from localStorage
-    // (We'll store it here after a successful login)
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+
+    // ✅ FIX: Only try to get the token if we are in the browser
+    // This prevents errors during Astro's build/SSR phase
+    const isBrowser = typeof window !== 'undefined';
+    const token = isBrowser ? $token.get() : undefined;
 
     const headers = new Headers(options.headers);
     headers.set('Content-Type', 'application/json');
@@ -35,22 +38,17 @@ export async function apiRequest<T>(
     try {
         const response = await fetch(`${BASE_URL}${endpoint}`, config);
 
-        // 2. Handle 401 Unauthorized (Expired or invalid token)
         if (response.status === 401) {
-            if (typeof window !== 'undefined') {
-                localStorage.removeItem('token');
-                window.location.href = '/login';
-            }
+            // ✅ Only attempt logout logic if in browser
+            if (isBrowser) logout();
             throw new Error('Session expired. Please login again.');
         }
 
-        // 3. Handle other errors
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             throw new Error(errorData.message || `API Error: ${response.status}`);
         }
 
-        // Return the data as the requested type
         return await response.json() as T;
     } catch (error) {
         console.error(`Fetch error at ${endpoint}:`, error);

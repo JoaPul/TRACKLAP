@@ -1,0 +1,39 @@
+---
+import ThemeToggle from "../components/ui/ThemeToggle.astro";
+import "../styles/global.css"; // Make sure you have your Tailwind imports here
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | TrackLap</title>
+    <script is:inline>
+      const theme =
+        localStorage.getItem("theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      document.documentElement.classList[theme === "dark" ? "add" : "remove"](
+        "dark"
+      );
+    </script>
+  </head>
+  <body
+    class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300"
+  >
+    <nav class="p-4 flex justify-between items-center max-w-7xl mx-auto">
+      <div class="text-2xl font-bold text-orange-600">TrackLap</div>
+      <ThemeToggle />
+    </nav>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

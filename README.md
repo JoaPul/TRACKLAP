@@ -64,14 +64,23 @@ src/
     bun install
 ```
 
-Configure environment variables (Create .env):
+## Configure environment variables (Create .env):
 
 ```Bash
     PUBLIC_API_URL=http://localhost:3000/api/v1
 ```
 
-Start the development server:
+## Start the development server:
 
 ```Bash
    bun run dev
 ```
+
+## TO DO
+
+- add in the readme the instalation of dependecy @nanostores/persistent
+- Once the app is functional, we can do a "Security Sprint" where we:
+
+  Update the Hono backend to send a Set-Cookie header.
+
+  Update Astro to use Astro.cookies.get('token') in the Layouts.
