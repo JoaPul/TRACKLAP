@@ -1,37 +1,29 @@
-# Balkali
+# TrackLap
 
-Running Tracker app (Front End). Comes from Áalkab.
-
-this is the recomended architecture
+Running Tracker app (Front End).
 
 src/
-├── pages/
-│ ├── index.astro → Landing page
-│ ├── login.astro
-│ ├── register.astro
-│ ├── dashboard.astro → Protected, uses React island
-│ ├── runs/
-│ │ ├── new.astro → Log a run (React form + map)
-│ │ └── [id].astro → Run details
-│ ├── shoes/
-│ │ ├── index.astro → List shoes
-│ │ ├── new.astro
-│ │ └── [id].edit.astro
-│ └── settings.astro
-│
-├── components/
-│ ├── react/
-│ │ ├── ShoeCard.jsx
-│ │ ├── RunCard.jsx
-│ │ ├── RouteMap.jsx → React + Mapbox
-│ │ ├── MileageBar.jsx
-│ │ └── AuthForm.jsx
-│ └── Header.astro
-│
 ├── layouts/
-│ └── Layout.astro → Wraps authenticated pages
-│
-├── lib/
-│ └── api.js → Functions to call your BUN/Hono API
-│
-├── env.d.ts → Define import.meta.env.PUBLIC_API_URL
+│ ├── MainLayout.astro # Public (Landing, Login, Register)
+│ └── DashboardLayout.astro # Auth (Sidebar, Navbar, User Context)
+├── components/
+│ ├── auth/ # Login, Register, Forgot Password forms
+│ ├── strava/ # Strava Connect/Status components
+│ ├── workouts/ # Workout Library & Template builders
+│ ├── shoes/ # Shoe cards, Mileage trackers, "Add Shoe" form
+│ ├── calendar/ # Weekly/Monthly training plan views
+│ ├── runs/ # Activity feed cards (Strava & Manual)
+│ └── ui/ # Reusable: Button, Input, Modal, Badge, Card
+├── pages/
+│ ├── index.astro # Marketing Landing Page
+│ ├── login.astro  
+│ ├── register.astro  
+│ └── dashboard/ # AUTHENTICATED AREA
+│ ├── index.astro # Main Hub (Overview of Plan, Runs, Shoes)
+│ ├── workouts.astro # Manage Workout Templates
+│ ├── shoes.astro # Detailed "Gear Locker"
+│ └── settings.astro # Profile editing & Strava integration
+├── lib/ # api.ts (Hono fetcher), date-utils.ts
+├── store/ # authStore.ts (Nano Stores for JWT)
+├── types/ # interfaces for User, Run, Workout, Shoe
+└── env.d.ts # Type definitions for Environment Variables
