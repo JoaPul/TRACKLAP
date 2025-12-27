@@ -4,17 +4,26 @@ import ThemeToggle from "./ui/ThemeToggle.astro";
 
 <header class="border-b border-zinc-200 dark:border-zinc-800">
   <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
-    <a href="/" class="text-2xl font-bold text-brand"> TrackLap </a>
+    <a href="/" class="relative flex items-center justify-center w-fit p-4">
+      <img
+        src="/Athlete.png"
+        alt="Athlete"
+        class="absolute w-24 max-w-none h-auto z-0 opacity-80"
+      />
+
+      <span
+        class="relative z-10 translate-y-[5px] text-s font-bold text-white bg-black/50 px-1 py-0.5 rounded-md backdrop-blur-sm"
+      >
+        TRACKLAP
+      </span>
+    </a>
 
     <nav class="flex items-center gap-4">
-      <a href="/login" class="text-sm font-medium hover:text-brand transition">
-        Login
-      </a>
       <a
-        href="/register"
-        class="text-sm font-medium hover:text-brand transition"
+        href="/login"
+        class="text-sm font-medium hover:text-brand transition border hover:border-brand text-white px-4 py-2 rounded-md"
       >
-        Register
+        Login
       </a>
 
       <ThemeToggle />
