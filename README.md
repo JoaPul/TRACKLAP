@@ -89,5 +89,7 @@ src/
   I would like to change:
   1.- if the toggle is set to "dark".
   1.1.- in header component the logo letters(top-left corner), should be background black with whites letters and login button(top-right corner, before the ThemeToggle button) should have white letters and white border, the toggle button should have the icon of the sun/light on and background gray(as it is).
+  1.2.- in the index.astro page, the background should be black, and the letters that have no specific color should be white.
   2.- if the toggle is set to "light".
   2.1.- in header component the logo letters(top-left corner), should be background white with black letters and login button(top-right corner, before the ThemeToggle button) should have black letters and black border, the toggle button should have the icon of the moon/light turned off and background gray(as it is).
+  2.2.- in the index.astro page, the background should be white, and the letters that have no specific color should be black.
