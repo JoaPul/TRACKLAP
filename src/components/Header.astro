@@ -14,7 +14,7 @@ import ThemeToggle from "./ui/ThemeToggle.astro";
       <span
         class="relative z-10 translate-y-[5px]
          text-sm font-bold leading-none
-         text-white bg-black
+         text-black dark:text-white bg-white dark:bg-black transition-all
          px-1 py-[1px]
          rounded-md"
       >
@@ -23,13 +23,6 @@ import ThemeToggle from "./ui/ThemeToggle.astro";
     </a>
 
     <nav class="flex items-center gap-4">
-      <a
-        href="/login"
-        class="text-sm font-medium hover:text-brand transition border hover:border-brand text-white px-4 py-2 rounded-md"
-      >
-        Login
-      </a>
-
       <ThemeToggle />
     </nav>
   </div>
